@@ -2,11 +2,16 @@ const sectionService = require("../services/section.Service");
 
 const createSection= async (req, res) => {
   try {
-    const classes = await sectionService.section(req.body);
+    console.log("(*&^%$")
+    const section = await sectionService.section(req);
     // console.log()
-    if (classes) {
-      
-      console.log(classes);
+    if (section) { 
+      console.log(section);
+      return res.send({
+        status: 200,
+        data : section,
+        message : " section created successfully"
+      })
   
     } else {
       res.send({
@@ -15,6 +20,7 @@ const createSection= async (req, res) => {
       });
     }
   } catch (error) {
+    console.log(error)
     res.send({
       status: 500,
       error: "internal error",

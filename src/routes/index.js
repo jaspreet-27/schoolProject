@@ -9,5 +9,5 @@ rootRouter.use('/school',school);
 rootRouter.use('/classes',classes)
 rootRouter.use("/section",section)
 
-
+  
 module.exports = rootRouter;

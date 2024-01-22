@@ -2,19 +2,26 @@ const classService = require("../services/class.Service");
 
 const createClass = async (req, res) => {
   try {
-    const classes = await classService.create(req.body);
+    console.log("dfghjttfyguhi")
+    const classes = await classService.creates(req);
+
     // console.log()
     if (classes) {
-      
       console.log(classes);
+      return res.send({
+        status : 200,
+        data: classes, 
+        message : "success"
+      })
   
     } else {
-      res.send({
-        status: 500,
+      res.send({   
+        status: 500,   
         message: "not created",
-      });
+      });  
     }
   } catch (error) {
+    console.log(error)
     res.send({
       status: 500,
       error: "internal error",
@@ -22,4 +29,4 @@ const createClass = async (req, res) => {
   }
 };
 
-module.exports = { createClass };
+module.exports =  {createClass};

@@ -4,6 +4,7 @@ if (process.env.NODE_ !== "production") {
   require("dotenv").config();
 const express =  require("express")
 const app = express();
+// const bcrypt = require("bcrypt")
 const myRoutes = require("./src/routes")
 require("./src/config/dataBase");
 app.use(express.json());

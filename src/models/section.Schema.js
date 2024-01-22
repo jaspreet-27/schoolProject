@@ -1,24 +1,22 @@
 const mongoose = require("mongoose");
 const { nanoid } = require("nanoid");
 
-const sectionSchema = mongoose.Schema({
-  _id: {
-    type: String,
-    default: () => nanoid(), // Use Nano ID as the default value
-    unique: true,
-  },
+const sectionSchema = new  mongoose.Schema({
   name: {
     type: String,
     required: true,
     unique: true,
-  },
+  },  
   classId: {
     type: String,
-    ref: "class",
+    ref: "Class",
     unique: "true",
   },
   isActive: { type: Boolean, default: true },
 });
-
-const section = mongoose.model("section", sectionSchema);
+sectionSchema.plugin(require('mongoose-nanoid') ,{ length: 16, 
+  // alphabets: "abcde#" 
+}
+  )
+const section = mongoose.model("Section", sectionSchema);
 module.exports =  section ;

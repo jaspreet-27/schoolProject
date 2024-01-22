@@ -1,12 +1,7 @@
 const mongoose = require("mongoose");
 const {nanoid}= require("nanoid")
 
-const schoolSchema = mongoose.Schema({
-  customId: {
-    type: String,
-    default: () => nanoid(), // Use Nano ID as the default value
-    unique: true,
-  },
+const schoolSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -40,13 +35,13 @@ const schoolSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  board: {
-    type: String,
-    required: true,
-  },
   isActive: { type: Boolean, 
     default: true }
 });
-const schools = mongoose.model("school", schoolSchema);
+schoolSchema.plugin(require('mongoose-nanoid') ,{ length: 16,
+  //  alphabets: "abcde#" 
+}
+   )
+const schools = mongoose.model("School", schoolSchema);
 module.exports = schools
 

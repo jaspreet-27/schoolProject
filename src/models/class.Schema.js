@@ -1,25 +1,22 @@
 const mongoose = require("mongoose");
 const { nanoid } = require("nanoid");
 
-const classSchema = mongoose.Schema({
-  _id: {
-    type: String,
-    default: () => nanoid(), // Use Nano ID as the default value
-    unique: true,
-  },
+const classSchema = new mongoose.Schema({
   grade: {
     type: String,
     required: true,
     unique: true,
   },
-    schoolId:{
-         type: mongoose.Types.ObjectId,
-          ref: "school", 
-          unique: "true", 
-    },
-    isActive: { type: Boolean, 
-      default: true }
-  })
-
-const classes = mongoose.model("classes",classSchema);
-module.exports={classes}
+  schoolId: {
+    type: String,
+    ref: "School",
+    // unique: "true",
+  },
+  isActive: { type: Boolean, default: true },
+});  
+classSchema.plugin(require("mongoose-nanoid"), {
+  length: 16,
+  // alphabets: "abcde#",
+});
+const classes = mongoose.model("Class", classSchema);
+module.exports = classes;
