@@ -36,9 +36,11 @@ const login = async (email, password) => {
     const school = await schools.findOne(email);
 
     if (school) {
-      let isPasswordValid = await bcrypt.compare(password, school.password);
+      // let isPasswordValid = await bcrypt.compare(password, school.password);
+      const isPasswordValid = await bcrypt.compare(password, hashedPassword);
 
-      if (isPasswordValid) {
+
+      if (isPasswordValid) {  
         const token = jwt.sign(
           { school_id: school._id, email },
           process.env.TOKEN_KEY

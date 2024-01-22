@@ -1,7 +1,4 @@
 const schoolService = require("../services/school.Service");
-// const model = require("../models/school.Schema");
-const bcrypt = require("bcrypt");
-
 const createSchool = async (req, res) => {
   try {
     console.log("im here");

@@ -39,8 +39,8 @@ const schoolSchema = new mongoose.Schema({
     type: String,
     ref: "School",
     unique: "true",
-  },
-  sectionId: {
+  },  
+  sectionId: {  
     type: String,
     ref: "Section",
     unique: "true",
@@ -52,5 +52,6 @@ schoolSchema.plugin(require('mongoose-nanoid') ,{ length: 16,
   // alphabets: "abcde#"
  }
  )
-const school = mongoose.model("School", schoolSchema);
-module.exports =  school ;
+const student= mongoose.model("Student", schoolSchema);
+module.exports =  student ;
+     
