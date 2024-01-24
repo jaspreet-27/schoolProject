@@ -12,4 +12,4 @@ rootRouter.use("/section",section)
 rootRouter.use('/student',student)
 
   
-module.exports = rootRouter;
+module.exports = rootRouter;  

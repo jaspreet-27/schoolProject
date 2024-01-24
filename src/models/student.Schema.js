@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 const { nanoid } = require("nanoid");
+const meta = require("../models/meta")
+mongoose.plugin(meta)
 
 const schoolSchema = new mongoose.Schema({
   name: {
@@ -37,7 +39,7 @@ const schoolSchema = new mongoose.Schema({
   },
   schoolId: {
     type: String,
-    ref: "School",
+    ref: "School", 
     unique: "true",
   },  
   sectionId: {  
@@ -49,7 +51,7 @@ const schoolSchema = new mongoose.Schema({
   isActive: { type: Boolean, default: true },
 });
 schoolSchema.plugin(require('mongoose-nanoid') ,{ length: 16, 
-  // alphabets: "abcde#"
+  // alphabets: "abcde#"   
  }
  )
 const student= mongoose.model("Student", schoolSchema);

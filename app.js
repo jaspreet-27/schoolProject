@@ -4,8 +4,10 @@ if (process.env.NODE_ !== "production") {
   require("dotenv").config();
 const express =  require("express")
 const app = express();
-// const bcrypt = require("bcrypt")
+
+const resInterceptor = require('./src/interceptor/res.interceptor')
 const myRoutes = require("./src/routes")
+app.use( resInterceptor);
 require("./src/config/dataBase");
 app.use(express.json());
 app.use('/',myRoutes)

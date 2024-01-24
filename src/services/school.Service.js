@@ -33,11 +33,14 @@ const createSchool = async (schoolData) => {
 
 const login = async (email, password) => {
   try {
-    const school = await schools.findOne(email);
+    const school = await schools.findOne({email});
+    console.log(password, "Pass")
+    console.log(school)
 
     if (school) {
       // let isPasswordValid = await bcrypt.compare(password, school.password);
-      const isPasswordValid = await bcrypt.compare(password, hashedPassword);
+      const isPasswordValid = await bcrypt.compare(password, school.password);
+      
 
 
       if (isPasswordValid) {  
@@ -57,4 +60,10 @@ const login = async (email, password) => {
   }
 };
 
-module.exports = { createSchool, login };
+const updateSchool = async (id, updatedData) => {
+  return await schools.findByIdAndUpdate(id, updatedData, { new: true });
+};
+  
+
+module.exports = { createSchool, login,updateSchool};
+  

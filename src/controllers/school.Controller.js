@@ -116,12 +116,12 @@ const createSchool = async (req, res) => {
 // schoolController.js
 
 const loginSchool = async (req, res) => {
-  console.log("login");
+  console.log(req.body,"login");
   const { email, password } = req.body;
 
-  const result = await schoolService.login({email, password});
+  const result = await schoolService.login(email, password);
   console.log(result,"serdtfyguhj")
-
+   
   if (result) {
     return res.send({
       data: { school: result.school, token: result.token },
@@ -135,6 +135,24 @@ const loginSchool = async (req, res) => {
   }
 };
 
+const updateSchool = async(req,res)=>{
+const {id:_id} = req.params;
+const updatedSchoolData = req.body;
+try {
+  const updatedSchool = await schoolService.updateSchool(_id,updatedSchoolData)
+  if(updatedSchool){
+    return res.send({
+      status:201,
+      meaasge : "created succssfully",
+      data: updatedSchool
+    })
+  }  
+} catch (error) {
+  res.status(500).json({ error: error.message });
+}
+}
 
 
-module.exports = { createSchool, loginSchool };
+  
+
+module.exports = { createSchool, loginSchool,updateSchool};

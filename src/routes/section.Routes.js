@@ -5,6 +5,7 @@ const schoolController = require("../controllers/section.Controller");
 
 
 router.post("/create",schoolController.createSection);
+router.post("/update/:id",schoolController.updateSection);
 
 
 module.exports = router;

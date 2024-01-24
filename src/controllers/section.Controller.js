@@ -3,6 +3,9 @@ const sectionService = require("../services/section.Service");
 const createSection= async (req, res) => {
   try {
     console.log("(*&^%$")
+
+    
+
     const section = await sectionService.section(req);
     // console.log()
     if (section) { 
@@ -28,4 +31,21 @@ const createSection= async (req, res) => {
   }
 };
 
-module.exports = { createSection };
+const updateSection = async (req,res)=>{
+  const {id:_id} = req.params;
+  const updatedSectionData = req.body;
+  try {
+    const updatedSection = await sectionService.update(_id,updatedSectionData)
+    if(updatedSection){
+      return res.send({
+        status:201,
+        meaasge : "created succssfully",
+        data: updatedSection
+      })
+    }  
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+module.exports = { createSection,updateSection };

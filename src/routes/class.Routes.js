@@ -5,6 +5,7 @@ const classController = require("../controllers/class.Controller")
 
 
 router.post("/create",classController.createClass)
+router.post("/update/:id",classController.classUpdate);
 
 
 module.exports = router;  

@@ -4,10 +4,18 @@ const section = async (req,res)=>{
 
     try {
       console.log(req.body,"req.body")
+
+      const existingsection = await sectionModel.findOne({ slug: req.body.slug });
+      if(existingsection){
+        return {
+          status: false,
+          error: "Slug already exists.",
+        };
+      }
         const createSection =  await sectionModel.create(req.body);
         console.log(createSection)
         if(createSection )  
-        return {
+        return {   
           status: true,    
           data :  createSection ,  
           message: "section created successfully.",
@@ -21,4 +29,8 @@ const section = async (req,res)=>{
       }
     };  
 
-    module.exports ={section}
+    const update = async (id, updatedData) => {
+      return await sectionModel.findByIdAndUpdate(id, updatedData, { new: true });
+    };
+
+    module.exports ={section,update}

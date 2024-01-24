@@ -14,9 +14,13 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.1.0",
+    "moment": "^2.30.1",
+    "mongoose": "^6.12.6",
     "mongoose-nanoid": "^2.1.5",
+    "mongoose-slug-generator": "^1.0.4",
+    "mongoose-timestamp": "^0.6.0",
     "nanoid": "^3.3.6",
-    "nodemon": "^3.0.3"
+    "nodemon": "^3.0.3",
+    "unix-timestamp": "^1.0.4"
   }
 }

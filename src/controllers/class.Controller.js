@@ -1,11 +1,11 @@
+
 const classService = require("../services/class.Service");
+
 
 const createClass = async (req, res) => {
   try {
     console.log("dfghjttfyguhi")
     const classes = await classService.creates(req);
-
-    // console.log()
     if (classes) {
       console.log(classes);
       return res.send({
@@ -29,4 +29,21 @@ const createClass = async (req, res) => {
   }
 };
 
-module.exports =  {createClass};
+const classUpdate = async (req,res)=>{
+  const {id:_id} = req.params;
+  const updatedClassData = req.body;
+  try {
+    const updatedClass = await classService.updateClass(_id,updatedClassData)
+    if(updatedClass){
+      return res.send({
+        status:201,
+        meaasge : "created succssfully",
+        data: updatedClass
+      })
+    }  
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+}
+
+module.exports =  {createClass,classUpdate};
