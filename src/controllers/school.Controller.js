@@ -149,10 +149,28 @@ try {
   }  
 } catch (error) {
   res.status(500).json({ error: error.message });
+}   
 }
-}
+
+const getAllDetails = async(req,res)=>{
+
+  // const {id:_id} = req.params;
+  try {
+    const getAllDetails = await schoolService.details(req.body);
+    if(getAllDetails){
+      res.send({  
+        status : 200,
+        message : "school details",
+        data : getAllDetails
+      })
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    
+  }
+}   
 
 
   
 
-module.exports = { createSchool, loginSchool,updateSchool};
+module.exports = { createSchool, loginSchool,updateSchool,getAllDetails};

@@ -6,6 +6,7 @@ const auth = require("../middleware.js/auth")
 
 router.post("/create",schoolController.createSchool);
 router.post("/login",schoolController.loginSchool);
-router.post("/update/:id",auth,schoolController.updateSchool);
+router.get("/allDetails",schoolController.getAllDetails)
+router.put("/update/:id",auth,schoolController.updateSchool);
 
-module.exports = router;  
+module.exports = router;   

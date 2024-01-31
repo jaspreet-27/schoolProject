@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const {nanoid}= require("nanoid")
-const meta = require("../models/meta")
-mongoose.plugin(meta)
+const { nanoid } = require("nanoid");
+const timestamp = require("../models/meta");
+// const meta = mongoose.model("Meta");
 
 const schoolSchema = new mongoose.Schema({
   name: {
@@ -21,7 +21,7 @@ const schoolSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  branch: {  
+  branch: {
     type: String,
     required: true,
   },
@@ -30,29 +30,23 @@ const schoolSchema = new mongoose.Schema({
     required: true,
   },
   principle: {
-    type: String,  
+    type: String,
     required: true,
   },
   medium: {
-    type: String,  
-    required: true,
+    type: String,
+    required: true,   
   },
-  isActive: { type: Boolean, 
-    default: true },
-    // timestamp: {  
-    //   type:String, 
-    //   default: () => moment().unix(Number)
-    // }
+  // meta,
+  isActive: { type: Boolean, default: true },
+});
+timestamp
+schoolSchema.plugin(require("mongoose-nanoid"), {
+  length: 16,
+  //  alphabets: "abcde#"
+});
 
-     
-});    
-schoolSchema.plugin(require('mongoose-nanoid') ,{ length: 16,
-  //  alphabets: "abcde#" 
-} )  
- 
+
 const schools = mongoose.model("School", schoolSchema);
-module.exports = schools
-
-
-
-     
+module.exports = schools;
+ 

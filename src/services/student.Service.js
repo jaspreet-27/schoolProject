@@ -56,7 +56,66 @@ const create = async (req, res) => {
 const update = async (id, updatedData) => {
   return await studentModel.findByIdAndUpdate(id, updatedData, { new: true });
 };
+// const findSchool = async(schoolId)=>{
+// return await studentModel.findById(schoolId)
+// }
+const findSchool = async (schoolId) => {
+  // const {schoolId} = req.params.id;
+  try {
+      const school = await studentModel.find({});
+      const studentCount = await studentModel.countDocuments({  schoolId });
+      return { count:studentCount };
+  } catch (error) {
+    console.log(error,"uijokp")      
+  }
+}
 
-module.exports = { create , update};
+const studentInClass = async (classId)=>{
+  try {
+    const students = await studentModel.find({});
+    if(students){
+      console.log(students,"dfghjkl")
+    }
+    const studentsCountInClass =  await studentModel.countDocuments({classId});
+    return {count:studentsCountInClass}
+  } catch (error) {
+    console.log(error,"uijokp")    
+  }
+}
 
- 
+
+const section = async (sectionId)=>{
+  try {
+    const asPerSection= await studentModel.find({});
+    if(asPerSection){
+      console.log(asPerSection,"dfghjkl")
+    }
+    const studentsAsPerSection=  await studentModel.countDocuments({sectionId});
+    return {count:studentsAsPerSection}
+  } catch (error) {
+    console.log(error,"uijokp")    
+  }
+}
+
+const details = async (data) => {
+  try {
+    const getAllDetails = await studentModel.find({});
+    if (getAllDetails) {
+    
+      return {   
+        data :getAllDetails
+      };
+      // console.log(getAllDetails, "uhjioklpk");
+    } else {
+      console.log("error");
+    }
+  } catch (error) {
+    console.log("Error during login:", error);
+    return { status: false, error: "Internal Server Error" };
+  }
+};
+
+
+module.exports = { create , update, findSchool,studentInClass,section,details};
+
+      

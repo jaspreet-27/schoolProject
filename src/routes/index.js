@@ -5,11 +5,18 @@ const school = require("../routes/school.Routes")
 const classes = require("./class.Routes")
 const section = require("../routes/section.Routes")
 const student= require('../routes/student.Routes')
+const teacher = require('../routes/teacher.Routes')
+const subject = require('../routes/subject.Routes')
+const linksubWithTeacher = require('../routes/linkSubWithTeacher.Routes')
+
 
 rootRouter.use('/school',school);
-rootRouter.use('/classes',classes)
-rootRouter.use("/section",section)
-rootRouter.use('/student',student)
+rootRouter.use('/classes',classes);
+rootRouter.use("/section",section);
+rootRouter.use('/student',student);
+rootRouter.use('/teacher',teacher);
+rootRouter.use('/subject',subject);
+rootRouter.use('/link',linksubWithTeacher);
 
-  
+
 module.exports = rootRouter;  

@@ -48,4 +48,23 @@ const updateSection = async (req,res)=>{
   }
 }
 
-module.exports = { createSection,updateSection };
+
+const getAllDetails = async(req,res)=>{
+
+  // const {id:_id} = req.params;
+  try {
+    const getAllDetails = await sectionService.details(req.body);
+    if(getAllDetails){
+      res.send({  
+        status : 200,
+        message : "section details",
+        data : getAllDetails
+      })
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+    
+  }
+}   
+
+module.exports = { createSection,updateSection ,getAllDetails};

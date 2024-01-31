@@ -3,12 +3,12 @@ const mongoose = require("mongoose");
 const moment = require("moment");
 mongoose.set("strictQuery", false);
 const metaschema = new mongoose.Schema({
-  timestamp: {
+  meta: {
     createdAt: {
       type: String,
       default: () => moment().unix(Number),
     },
-    updatedAt: {
+    updatedAt: {  
       type: String,
       default: () => moment().unix(Number),
     },
@@ -16,5 +16,5 @@ const metaschema = new mongoose.Schema({
 });
 
 // metaschema.set(unixTimestamp, true);
-const meta = mongoose.model("meta", metaschema);
+const meta = mongoose.model("Meta", metaschema);
 module.exports = meta;

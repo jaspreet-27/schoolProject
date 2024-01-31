@@ -33,4 +33,23 @@ const section = async (req,res)=>{
       return await sectionModel.findByIdAndUpdate(id, updatedData, { new: true });
     };
 
-    module.exports ={section,update}
+
+    
+const details = async (data) => {
+  try {
+    const getAllDetails = await sectionModel.find({});
+    if (getAllDetails) {
+    
+      return {   
+        data :getAllDetails
+      };
+      // console.log(getAllDetails, "uhjioklpk");
+    } else {
+      console.log("error");
+    }
+  } catch (error) {
+    console.log("Error during login:", error);
+    return { status: false, error: "Internal Server Error" };
+  }
+};
+    module.exports ={section,update,details}

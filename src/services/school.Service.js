@@ -1,6 +1,7 @@
 const schools = require("../models/school.Schema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { findById } = require("../models/meta");
 const createSchool = async (schoolData) => {
   try {
     console.log("sddfsffdsd ");
@@ -33,17 +34,15 @@ const createSchool = async (schoolData) => {
 
 const login = async (email, password) => {
   try {
-    const school = await schools.findOne({email});
-    console.log(password, "Pass")
-    console.log(school)
+    const school = await schools.findOne({ email });
+    console.log(password, "Pass");
+    console.log(school);
 
     if (school) {
       // let isPasswordValid = await bcrypt.compare(password, school.password);
       const isPasswordValid = await bcrypt.compare(password, school.password);
-      
 
-
-      if (isPasswordValid) {  
+      if (isPasswordValid) {
         const token = jwt.sign(
           { school_id: school._id, email },
           process.env.TOKEN_KEY
@@ -63,7 +62,23 @@ const login = async (email, password) => {
 const updateSchool = async (id, updatedData) => {
   return await schools.findByIdAndUpdate(id, updatedData, { new: true });
 };
-  
 
-module.exports = { createSchool, login,updateSchool};
-  
+const details = async (data) => {
+  // console.log(data);
+  try {
+    const getAllDetails = await schools.find({});
+    if (getAllDetails) {
+    
+      return {   
+        data :getAllDetails
+      };
+      // console.log(getAllDetails, "uhjioklpk");
+    } else {
+      console.log("error");
+    }
+  } catch (error) {
+    console.log("Error during login:", error);
+    return { status: false, error: "Internal Server Error" };
+  }
+};
+module.exports = { createSchool, login, updateSchool, details };
