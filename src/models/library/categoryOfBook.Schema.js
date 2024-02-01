@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 const slug = require("mongoose-slug-generator");
-const meta = require("../models/meta");
 mongoose.plugin(slug);
-mongoose.plugin(meta);
-
 const categoriesOfSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -11,7 +8,7 @@ const categoriesOfSchema = new mongoose.Schema({
     unique: true,
   },
   libraryId: {
-    type: String,
+    type: String, 
     ref: "library",
     unique: "true",
   },
@@ -22,7 +19,7 @@ const categoriesOfSchema = new mongoose.Schema({
     unique: true,
   },
 });
-classSchema.plugin(require("mongoose-nanoid"), {
+categoriesOfSchema.plugin(require("mongoose-nanoid"), {
   length: 16,
 });
 

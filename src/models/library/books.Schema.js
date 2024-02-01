@@ -1,21 +1,11 @@
 const mongoose = require("mongoose");
 const slug = require("mongoose-slug-generator");
-const meta = require("../models/meta");
+// const meta = require("../models/meta");
 mongoose.plugin(slug);
-mongoose.plugin(meta);
+// mongoose.plugin(meta);
 
 const booksSchema = new mongoose.Schema({
   
-  categoryId: {
-    type: String,
-    ref: "Category",
-    unique: "true",
-  },
-  libraryId: {
-    type: String,
-    ref: "library",
-    unique: "true",
-  },
   title: {
     type: String,
     required: true,
@@ -32,7 +22,16 @@ const booksSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  isActive: { type: Boolean, default: true },
+  categoryId: {
+    type: String,
+    ref: "Category",
+    unique: "true",
+  },
+  libraryId: {
+    type: String,
+    ref: "library",
+    unique: "true",
+  },
   slug: {
     type: String,
     slug: "title",

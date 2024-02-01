@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const slug = require("mongoose-slug-generator");
-const meta = require("../models/meta");
+// const meta = require("../models/meta");
 mongoose.plugin(slug);
-mongoose.plugin(meta);
+// mongoose.plugin(meta);
 
 const librarySchema = new mongoose.Schema({
   name: {
@@ -18,7 +18,7 @@ const librarySchema = new mongoose.Schema({
     type: String,
     required: true,
   },  
-  Number: {
+  number: {
     type: Number,
     required: true,
   },
@@ -29,7 +29,7 @@ const librarySchema = new mongoose.Schema({
     unique: true,
   },
 });
-classSchema.plugin(require("mongoose-nanoid"), {
+librarySchema.plugin(require("mongoose-nanoid"), {
   length: 16,
 });
 // classSchema.set("timestamps", true);
