@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { nanoid } = require("nanoid");
 const timestamp = require("../models/meta");
 // const meta = mongoose.model("Meta");
 

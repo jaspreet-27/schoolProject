@@ -8,7 +8,7 @@ router.post("/create",classController.createClass)
 router.get("/allDetails",classController.getAllDetails)
 router.put("/update/:id",auth,classController.classUpdate);
 router.get("/classesOfSchool/:id",auth,classController.getclass)
-// router.get("/getall",classController.get)
+
 
 
 module.exports = router;      

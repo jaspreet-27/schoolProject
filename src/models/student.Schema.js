@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { nanoid } = require("nanoid");
 const meta = require("../models/meta")
 mongoose.plugin(meta)
 

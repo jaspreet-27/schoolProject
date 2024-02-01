@@ -6,8 +6,9 @@ const create = async (teacherId, name) => {
   try {
     // console.log(req.body,"req.body")
     const teachers = await teacher.findById(teacherId);
-    const subjects = await subject.findOne( {name} );
-
+    const subjects = await subject.findOne( {name:name});
+    console.log(teachers, "gbhnjxk");
+    console.log(subjects, "jofcvgbhnjmkl,");
     if (!teachers || !subjects) {
       console.log(teachers, "gbhnjxk");
       console.log(subjects, "jofcvgbhnjmkl,");
@@ -18,7 +19,7 @@ const create = async (teacherId, name) => {
     }
     const existingLink = await linkModel.findOne({
       teacherId: teachers._id,
-      name: name,
+      name: name._name,
     });
     if (existingLink) {
       return {
@@ -44,22 +45,22 @@ const create = async (teacherId, name) => {
 const getTeacherWithSubject = async (req, res) => {
   const get = await linkModel.find({});
   console.log(get, "eyuio");
-  return ({
+  return {
     status: 200,
     data: get,
-  });
+  };
 };
 
-const findclass = async (classId)=>{
-  const getLinks= await linkModel.find({});
-  if(getLinks){
-    console.log(getLinks,"eddrftgyhu")
+const findclass = async (classId) => {
+  const getLinks = await linkModel.find({});
+  if (getLinks) {
+    console.log(getLinks, "eddrftgyhu");
   }
   const getTeacherAndSubjectBYClass = await linkModel.find(classId);
-  if(getTeacherAndSubjectBYClass){
-    console.log(getTeacherAndSubjectBYClass,"dfghjkl")
-    return{getTeacherAndSubjectBYClass}
+  if (getTeacherAndSubjectBYClass) {
+    console.log(getTeacherAndSubjectBYClass, "dfghjkl");
+    return { getTeacherAndSubjectBYClass };
   }
-}
+};
 
-module.exports = { create, getTeacherWithSubject ,findclass};
+module.exports = { create, getTeacherWithSubject, findclass };

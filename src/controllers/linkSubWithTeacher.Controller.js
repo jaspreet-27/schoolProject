@@ -10,7 +10,7 @@ const linking = async (req, res) => {
       });
     } catch (error) {
       console.error(error);
-      res.status(500).json({  
+      res.status(500).json({      
         status: false,
         error: "Internal Server Error",
       });

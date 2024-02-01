@@ -4,29 +4,34 @@ const meta = require("../models/meta");
 mongoose.plugin(slug);
 mongoose.plugin(meta);
 
-
-const classSchema = new mongoose.Schema({
-  grade: {   
+const librarySchema = new mongoose.Schema({
+  name: {
     type: String,
     required: true,
-    // unique: true,  
-  },  
+  },
   schoolId: {
-    type: String, 
+    type: String,
     ref: "School",
     unique: "true",
+  },
+  email: {
+    type: String,
+    required: true,
+  },  
+  Number: {
+    type: Number,
+    required: true,
   },
   isActive: { type: Boolean, default: true },
   slug: {
     type: String,
-    slug: "grade",
+    slug: "name",
     unique: true,
   },
- 
 });
 classSchema.plugin(require("mongoose-nanoid"), {
   length: 16,
 });
 // classSchema.set("timestamps", true);
-const classes = mongoose.model("Class", classSchema);
-module.exports = classes;
+const library = mongoose.model("library", librarySchema);
+module.exports = library;
