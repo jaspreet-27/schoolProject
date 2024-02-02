@@ -25,4 +25,35 @@ const createBooks = async (req,res)=>{
         });
       }
 }
-module.exports = {createBooks}
+
+const findByCategoryId = async (req,res)=>{
+  const { categoryId: _id } = req.params.id;
+  try {
+    const find = await bookService.findBookByCategory(req.params.id);
+    if (find) {
+      res.send({
+        book: find,  
+        staus: 200,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+const bookDetails = async (req,res)=>{
+  const { id: _id } = req.params.id;
+  try {
+    const find = await bookService.findBook(req.params.id);
+    if (find) {
+      res.send({
+        book: find,  
+        staus: 200,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+module.exports = {createBooks,findByCategoryId,bookDetails}

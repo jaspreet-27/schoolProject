@@ -5,6 +5,8 @@ const auth = require("../middleware.js/auth")
 
 
 router.post("/create",libraryController.createLibrary);
+router.get("/",libraryController.getAllDetails)
+router.get("/schoolId/:id",libraryController.getLibraryBySchool)
 
 
 module.exports = router; 

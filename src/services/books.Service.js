@@ -29,4 +29,32 @@ const books = async (req,res)=>{
       }
     };
 
-    module.exports={books}
+    const findBookByCategory = async (categoryId)=>{
+      try {
+        const bookByCategory  = await booksModel.find({categoryId});
+        if(bookByCategory)
+        console.log(bookByCategory)
+      return {data :bookByCategory}
+      } catch (error) {
+        console.log(error,"cfvgbnim");  
+        return {
+          status: false,
+          error: "Internal Server Error"
+      }
+    }
+    }
+    const findBook = async (id)=>{
+      try {
+        const bookDetails  = await booksModel.findById(id);
+        if(bookDetails)
+        console.log(bookDetails)
+      return {data :bookDetails}
+      } catch (error) {
+        console.log(error,"cfvgbnim");  
+        return {
+          status: false,
+          error: "Internal Server Error"
+      }
+    }
+    }
+    module.exports={books,findBookByCategory,findBook}

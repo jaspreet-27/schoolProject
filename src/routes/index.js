@@ -11,11 +11,11 @@ const linksubWithTeacher = require('../routes/linkSubWithTeacher.Routes')
 const library = require('../routes/library.Routes')
 const bookCategory = require('../routes/bookCategory.Routes')
 const books = require('../routes/books.Routes')
-const issueBook =require('../routes/issueBook.Routes')
+// const issueBook =require('../routes/issueBook.Routes')
 
 rootRouter.use('/school',school);
 rootRouter.use('/classes',classes);
-rootRouter.use("/section",section);
+rootRouter.use("/section",section);  
 rootRouter.use('/student',student);
 rootRouter.use('/teacher',teacher);
 rootRouter.use('/subject',subject);

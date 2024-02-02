@@ -1,7 +1,6 @@
 const libraryModel = require('../models/library/library.Schema')
 
 const library = async (req,res)=>{
-
     try {
       console.log(req.body,"req.body")
 
@@ -28,5 +27,36 @@ const library = async (req,res)=>{
         };
       }
     }; 
+    
+    const findLibraryDetails = async (req,res)=>{
+      try {
+       const find = await libraryModel.find({});
+        if (find)
+        console.log(find,"tyuijb")
+     return{
+      data : find
+     }
+            
+      } catch (error) {
+        console.log(error,"cfvgbnim");  
+        return {
+          status: false,
+          error: "Internal Server Error"
+      }
+      }}
 
-    module.exports ={library}
+      const findLibrary = async (schoolId)=>{
+        try {
+          const find = await libraryModel.find({schoolId});
+          if(find)
+          console.log(find)
+        return {data :find}
+        } catch (error) {
+          console.log(error,"cfvgbnim");  
+          return {
+            status: false,
+            error: "Internal Server Error"
+        }
+      }
+    }
+    module.exports ={library,findLibraryDetails,findLibrary}
