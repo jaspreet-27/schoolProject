@@ -23,5 +23,4 @@ also change script in package.json file include:
     $ npm start 
     $ npx nodemon
 
-     Postman link attached below
-     https://api.postman.com/collections/31485446-38751879-81fe-4387-96a0-af700b360a42?access_key=PMAT-01HNMQM7XEH9J11PK7JDPH0PYZ
+
