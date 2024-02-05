@@ -137,9 +137,9 @@ const loginSchool = async (req, res) => {
 
 const updateSchool = async(req,res)=>{
 const {id:_id} = req.params;
-const updatedSchoolData = req.body;
 try {
-  const updatedSchool = await schoolService.updateSchool(_id,updatedSchoolData)
+
+  const updatedSchool = await schoolService.updateSchool(_id)
   if(updatedSchool){
     return res.send({
       status:201,
@@ -169,6 +169,7 @@ const getAllDetails = async(req,res)=>{
     
   }
 }   
+
 
 
   

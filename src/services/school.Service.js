@@ -59,8 +59,28 @@ const login = async (email, password) => {
   }
 };
 
-const updateSchool = async (id, updatedData) => {
-  return await schools.findByIdAndUpdate(id, updatedData, { new: true });
+const updateSchool = async (updateData) => {
+const {email}= req.body;
+  try {
+    const existEmail = await schools.findone( email);
+    if(existEmail){
+      return {
+        message:"email already exist"
+      }
+    }
+    const updatedata = await schools.updateOne(updateData)
+    if(updateData){
+      return {
+        data : updateData,
+        message:"succesfully updated"
+      }
+    }
+
+  } catch (error) {
+    console.log("Error during login:", error);
+    return { status: false, error: "Internal Server Error" };
+  }
+
 };
 
 const details = async (data) => {

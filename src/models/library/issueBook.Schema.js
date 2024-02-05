@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const meta = require("../models/meta");
-mongoose.plugin(meta);
+// const meta = require("../models/meta");
+// mongoose.plugin(meta);
 
 const issueBookSchema = new mongoose.Schema({
   libraryId: {
@@ -14,7 +14,7 @@ const issueBookSchema = new mongoose.Schema({
     unique: "true",
   },
   bookId: {
-    type: String,
+    type: String, 
     ref: "books",
     unique: "true",
   },
@@ -31,7 +31,7 @@ const issueBookSchema = new mongoose.Schema({
     default: Date,
   },
 });
-classSchema.plugin(require("mongoose-nanoid"), {
+issueBookSchema.plugin(require("mongoose-nanoid"), {
   length: 16,
 });
 // classSchema.set("timestamps", true);

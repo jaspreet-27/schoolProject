@@ -5,11 +5,12 @@ const issueBooks = async (req,res)=>{
     try {
         console.log("(*&^%$");
         const issueBook = await issueBookService.issueBook(req);
+        // console.log(req.body,"erctvybunimo");
         if (issueBook) {
-          console.log(issueBook);
+          // console.log(issueBook,"erctvybunimo");
           return res.send({
             status: 200,
-            data: createBook,
+            data: issueBook,
             
           });
         } else {
@@ -25,6 +26,6 @@ const issueBooks = async (req,res)=>{
           error: "internal error",
         });
       }
-}
+}  
 
 module.exports={issueBooks}
