@@ -1,13 +1,17 @@
 const schoolService = require("../services/school.Service");
+// const file = require("../public")
 const createSchool = async (req, res) => {
+  
   try {
     console.log("im here");
+    const img = req.file.path 
+      req.body.img = img
     const school = await schoolService.createSchool(req.body);
 
     if (school) console.log(school);
     res.send({
       status: 200,
-      data: "school",
+      data: school,
     });
   } catch (error) {
     res.send({
@@ -17,7 +21,7 @@ const createSchool = async (req, res) => {
   }
 };
 
-// const loginSchool = async (req, res) => {
+// const loginSchool = async (req, res)   => {
 //   console.log("login");
 //   const { email, password } = req.body;
 //   try {
@@ -136,21 +140,28 @@ const loginSchool = async (req, res) => {
 };
 
 const updateSchool = async(req,res)=>{
-const {id:_id} = req.params;
+const {id:_id} = req.params.id;
+const {email}= req.body
 try {
 
-  const updatedSchool = await schoolService.updateSchool(_id)
+  const updatedSchool = await schoolService.updateSchool(req.params.id,email)
   if(updatedSchool){
     return res.send({
       status:201,
       meaasge : "created succssfully",
-      data: updatedSchool
+      data: updatedSchool  
     })
   }  
 } catch (error) {
+  console.log(error,"xdcvbn")  
   res.status(500).json({ error: error.message });
 }   
 }
+
+
+
+
+
 
 const getAllDetails = async(req,res)=>{
 
@@ -170,8 +181,29 @@ const getAllDetails = async(req,res)=>{
   }
 }   
 
+const deleteSchool = async (req, res) => {
+  const schoolId = req.params.id;
+
+  try {
+    const deletedSchool = await schoolService.deleteSchool(schoolId);
+    if (deletedSchool) {
+      res.status(200).json({ message: "Post soft deleted successfully", softDelete:deletedSchool});
+    } else {
+      res.status(404).json({ message: "Post not found" });
+    }
+  } catch (error) {
+    console.log(error,"xcvbn")
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const uploadImage = (req,res)=>{
+  const files = file
+console.log(files)
+}
+
 
 
   
 
-module.exports = { createSchool, loginSchool,updateSchool,getAllDetails};
+module.exports = { createSchool, loginSchool,updateSchool,getAllDetails,deleteSchool,uploadImage};

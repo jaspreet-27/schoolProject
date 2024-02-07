@@ -5,47 +5,53 @@ const timestamp = require("../models/meta");
 const schoolSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
   },
   email: {
     type: String,
-    required: true,
-    unique: true,
+    // required: true,
+    // unique: true,
   },
   password: {
     type: String,
-    required: true,
+    // required: true,
   },
   address: {
     type: String,
-    required: true,
+    // required: true,
   },
   branch: {
     type: String,
-    required: true,
+    // required: true,
   },
   contactNumber: {
     type: Number,
-    required: true,
+    // required: true,
   },
   principle: {
     type: String,
-    required: true,
+    // required: true,
   },
   medium: {
     type: String,
-    required: true,   
+    // required: true,
   },
-  // meta,
   isActive: { type: Boolean, default: true },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+  },
+  img:
+  {
+    type: String,
+    // reuired: true
+  }
 });
-timestamp
+timestamp;
 schoolSchema.plugin(require("mongoose-nanoid"), {
   length: 16,
   //  alphabets: "abcde#"
 });
 
-
 const schools = mongoose.model("School", schoolSchema);
 module.exports = schools;
- 

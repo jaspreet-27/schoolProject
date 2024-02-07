@@ -7,6 +7,7 @@ const app = express();
 
 const resInterceptor = require('./src/interceptor/res.interceptor')
 const myRoutes = require("./src/routes")
+app.use('/uploads', express.static('uploads'))
 app.use( resInterceptor);
 require("./src/config/dataBase");
 app.use(express.json());
